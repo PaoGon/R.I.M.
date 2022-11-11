@@ -193,6 +193,7 @@ input IncidentWhereUniqueInput {
 
 type Mutation {
   createOneAccount(data: AccountCreateInput!): Account!
+  register(data: AccountCreateInput!): Account!
 }
 
 input NestedBoolFilter {
