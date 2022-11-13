@@ -6,12 +6,13 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-co
 import { ApolloServer } from 'apollo-server-express';
 import express, { Express } from 'express';
 
-import { AccountResolver } from "../src/modules/Accounts/AccountResolver"
+import { AccountResolver } from "./custom_resolvers/Accounts/AccountResolver"
 
 import {
   FindManyAccountResolver,
   FindUniqueAccountResolver,
-  CreateOneAccountResolver
+  CreateOneAccountResolver,
+  FindFirstAccountResolver
 } from '../prisma/generated/type-graphql';
 
 
@@ -19,17 +20,13 @@ interface Context {
   prisma: PrismaClient;
 }
 
-/* This line of code is a testing resolver that will
- explains and try if the graphql endpoint is Working */
-
-
-
 const main = async () => {
   const resolver =  [
     FindManyAccountResolver,
     FindUniqueAccountResolver,
     CreateOneAccountResolver,
-    AccountResolver
+    AccountResolver,
+    FindFirstAccountResolver
     ] as NonEmptyArray<Function>
     resolver.concat(AccountResolver) as NonEmptyArray<Function>
   const schema = await buildSchema({
