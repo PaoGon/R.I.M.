@@ -1,13 +1,6 @@
 
-*{
-    margin:0;
-    padding: 0;
-    font-family: sans-serif;
 
-   
-}
-
-.mainGrid{
+.logsmainGrid{
     display: grid;
     width: 100vw;
     height: 100vh;
@@ -34,7 +27,7 @@
     
 }
 
-.navContainer{
+.logsNavContainer{
     display: flex;
     grid-area: nav;
     justify-content: center;
@@ -86,7 +79,7 @@ input:focus {
     
     
   }
-input{
+.searchBarCon>input{
     display: flex;
     align-items: flex-end;
     height: 2em;
@@ -126,7 +119,7 @@ input{
     }
 
 @media all and (max-width: 480px) {
-    .mainGrid{
+    .logsmainGrid{
         display: grid;
         width: 100vw;
         height: 200vh;
@@ -147,7 +140,7 @@ input{
         height: fit-content;
        
     }
-    .navContainer{
+    .logsNavContainer{
         display: flex;
         flex-direction: column;
 

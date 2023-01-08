@@ -13,8 +13,8 @@ import { Link } from "react-router-dom";
 
 const Logs: FC = () => {
     return(
-        <div className= "mainGrid">
-            <div className="navContainer">
+        <div className= "logsmainGrid">
+            <div className="logsNavContainer">
                  <div className="navCont">
                     <NavBar cardSize="nav--bar"/>
                  </div>

@@ -29,7 +29,7 @@ const BtnLogs: FC = () => {
   return (
     <>
     
-      <div className="btn-logs-container">
+      <div className="btnlogspage-container">
         {ReportsBtnProps.map((val, key) => {
           return (
             <div className="wrapper" key={key}>

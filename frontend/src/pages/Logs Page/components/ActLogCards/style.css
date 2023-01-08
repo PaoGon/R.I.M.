@@ -1,11 +1,4 @@
-*{
-    margin:0;
-    padding: 0;
-    font-family: sans-serif;
-}
-body{
-    background-color: #F0F0F9;
-}
+
 .cardData{
     display: flex;
     flex-direction: row;
