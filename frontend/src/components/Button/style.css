@@ -84,7 +84,7 @@ button {
   border: none;
 }
 
-.btn--categories {
+.btn--categories,.btn--logs-design {
   background-color: var(--white);
   color: var(--grey);
   border: none;
@@ -115,21 +115,23 @@ button {
   font-size: 12px;
   font-weight: bold;
 }
-.btn--logs {
-  padding: 5px;
-  font-size: 12px;
-  min-height: 100%;
+
+.btn--logs,.btn--active{
+  font-size: .8vw;
+  padding: 1vw;
+  max-height: 5vh;
   min-width: 100%;
   font-weight: bold;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: #9b959e;
+  white-space: nowrap;
+
 }
-.btn--active {
-  padding: 5px;
-  font-size: 12px;
-  font-weight: bold;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-  color: #205eff;
+.btn--logs{
+  color: #9B959E;
+}
+.btn--active{
+  color: #205EFF;
+  
 }
 
 .for-icons {
@@ -163,7 +165,16 @@ button {
 
 /* report buttons for small mobile view */
 @media all and (max-width: 480px) {
-  /* forms next button for mobile view */
+ 
+  .btn--logs,.btn--active{
+    font-size: 3vw;
+    padding: 5vw;
+    min-height: 100%;
+    min-width: 100%; 
+
+  }
+
+   /* forms next button for mobile view */
   .btn--next {
     padding-left: 120px;
     padding-right: 120px;
@@ -205,6 +216,12 @@ button {
     font-size: 15px;
     font-weight: bold;
   }
+  .btn--logs,.btn--active{
+    font-size: 3vw;
+    padding: 5vw;
+    
+  }
+
 }
 
 /* Tablet View */
@@ -225,7 +242,6 @@ button {
     color: #626060;
     font-weight: bold;
   }
-
   /* forms next button for mobile view */
   .btn--next {
     width: 100%;
@@ -243,4 +259,12 @@ button {
     color: var(--white);
     border: none;
   }
+
 }
+@media all and (min-width: 769px) and (max-width: 960px) { 
+  .btn--logs,.btn--active{
+    font-size: 2vw;
+    padding: 3vw;
+  }
+}
+

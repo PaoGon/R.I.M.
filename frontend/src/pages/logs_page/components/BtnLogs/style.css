@@ -5,4 +5,15 @@
     gap: 1em;
   }
 
+@media all and (max-width: 960px) {
+  .logsbtncontainer {
+    overflow-x: scroll;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1vh;
+    
+  }
+}
+
  

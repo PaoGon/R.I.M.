@@ -15,7 +15,7 @@ const BtnLogs: FC = () => {
       <div className="logsbtncontainer">
         {LogsReportsBtnProps.map((val, key) => {
           return (
-            <div className="wrapper" key={key}>
+            <p className="logswrapper" key={key}>
               <Button
                 type={btnType.Submit}
                 svg={val.svg}
@@ -25,7 +25,7 @@ const BtnLogs: FC = () => {
                 buttonSize={val.buttonSize}
                 onClick={() => (val.id)}
               ></Button>
-            </div>
+            </p>
           );
         })}
         </div>

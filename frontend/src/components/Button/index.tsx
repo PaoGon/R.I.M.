@@ -7,6 +7,7 @@ const STYLES = [
   "btn--secondary",
   "btn--categories",
   "btn--selector",
+  "btn--logs-design",
 ];
 
 const SIZES = [
