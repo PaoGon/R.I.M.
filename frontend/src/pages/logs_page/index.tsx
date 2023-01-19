@@ -27,14 +27,18 @@ const Logs: FC = () => {
   return (
     <div className="logsmainGrid">
       <div className="logsnavContainer">
-        <div className="logsnavCont">
+        
           <NavBar cardSize="nav--bar" />
-        </div>
+        
       </div>
 
-      <div className="categorieswrap">
+      <div className="logscategorieswrap">
         <div className="logstopwrapper">
           <div className="searchBarCon">
+            <span >
+                <Link to="/Dashboard">
+                  <BiArrowBack className="backIcon" /></Link>
+            </span>
             <InputField
               placeholder="Search here"
               label={""}
@@ -52,32 +56,6 @@ const Logs: FC = () => {
           </div>
         </div>
 
-        <div className="mobilesearchwrapper">
-          <div className="mobiletopwrapper">
-            <div className="mobilesearchBarCon">
-              <span >
-                <Link to="/Dashboard">
-                  <BiArrowBack className="backIcon" /></Link>
-              </span>
-              <InputField
-                placeholder="Search here"
-                label={""}
-                type={"text"}
-                auto={false}
-                name={"searchBar"}
-                forinput={""}
-                id={"searchBar"}
-                required={false}
-                getData={getCred}
-                readonly={false} />
-              <span >
-                <IoIosSearch className="mobilesearchIcon" />
-              </span>
-
-            </div>
-          </div>
-        </div>
-
         <div className="logsbuttons">
           <BtnLogs />
         </div>
@@ -85,23 +63,23 @@ const Logs: FC = () => {
       </div>
 
 
-      <div className="MapCards">
-        {actLogsProps.map((val, key) => {
-          return (
-            <div className="actLogContainer" key={key}>
-              <ActLogsCategories
-                reportType={val.report_type}
-                cardIcon={val.cardIcon}
-                cardSize={val.cardSize}
-                city={val.city}
-                address={val.address}
-              />
-            </div>
-          );
+    
+        <div className="MapCards">
+          {actLogsProps.map((val, key) => {
+            return (
+              <div className="actLogContainer" key={key}>
+                <ActLogsCategories
+                  reportType={val.report_type}
+                  cardIcon={val.cardIcon}
+                  cardSize={val.cardSize}
+                  city={val.city}
+                  address={val.address}
+                />
+              </div>
+            );
 
-        })}
-
-      </div>
+          })}
+        </div>
 
 
 

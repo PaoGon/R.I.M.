@@ -1,22 +1,24 @@
 
 .logscardData{
+    height:100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    padding-left:6%;
+    padding-left:1em;
     background: #FFFFFF;
     cursor: pointer;
    
 }
 
 .city{
-    font-size: 1em;
+    font-size: 1.4vw;
+    padding-bottom: 0.3em;
     color:#6F6F6F;
     font-weight: bold;
 }
 .address{
-    font-size: 1em;
+    font-size: 1.3vw;
     color:#6F6F6F;
     
 }
@@ -24,9 +26,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height:6em;
-    width: 6em;
-    padding-right: 1.5em;
+    width: 7vw;
+   
+}
+.iconImgCon{
+    padding-right: 0.5em;
 }
 .addressContainer{
 
@@ -38,4 +42,105 @@
 .activitylog{
 display: flex;
     flex-direction: column;
+}
+
+
+@media all and (max-width: 480px) {
+
+    .iconsImg{
+        width: 15vw;
+        height: 100%;
+    }
+    .logscardData{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #FFFFFF;
+        cursor: pointer;
+        justify-content: start;
+        height: 100%;
+        
+    }
+    
+    .city{
+        font-size: 4vw;
+        
+    }
+    .address{
+        font-size: 3.3vw;
+       
+    }
+
+
+}
+
+
+/* reports button for Mobile View to Tablet */
+@media all and (min-width: 481px) and (max-width: 768px) {
+
+    .iconsImg{
+        width: 12vw;
+        height: 100%;
+    }
+    .logscardData{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #FFFFFF;
+        cursor: pointer;
+        padding: 1em;
+        justify-content: start;
+        height: 100%;
+        
+    }
+    
+    .city{
+        font-size: 3.3vw;
+    }
+    .address{
+        font-size: 2.7vw;
+       
+    }
+
+
+}
+
+
+/* reports button Tablet View */
+@media all and (min-width: 769px) and (max-width: 960px) { 
+    .iconsImg{
+        width: 9vw;
+      
+    }
+    .logscardData{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #FFFFFF;
+        cursor: pointer;
+        justify-content: start;
+        height: 100%;
+        
+    }
+    
+    .city{
+        font-size: 2.3vw;
+    }
+    .address{
+        font-size: 1.8vw;
+       
+    }
+
+}
+@media all and (min-width: 600px) and (max-width: 768px) { 
+    .iconsImg{
+        width: 8vw;
+    }
+    .city{
+        font-size: 2.3vw;
+    }
+    .address{
+        font-size: 2vw;
+       
+    }
 }

@@ -7,7 +7,6 @@ type Account {
   _count: AccountCount
   acc_id: String!
   acc_type: AccType!
-  designation: String!
   email: String!
 }
 
@@ -18,7 +17,6 @@ type AccountCount {
 input AccountCreateInput {
   acc_id: String
   acc_type: AccType!
-  designation: String!
   email: String!
   password: String!
   reports: ReportCreateNestedManyWithoutReporterInput
@@ -38,7 +36,6 @@ input AccountCreateOrConnectWithoutReportsInput {
 input AccountCreateWithoutReportsInput {
   acc_id: String
   acc_type: AccType!
-  designation: String!
   email: String!
   password: String!
 }
@@ -46,7 +43,6 @@ input AccountCreateWithoutReportsInput {
 input AccountOrderByWithRelationInput {
   acc_id: SortOrder
   acc_type: SortOrder
-  designation: SortOrder
   email: SortOrder
   password: SortOrder
   reports: ReportOrderByRelationAggregateInput
@@ -60,39 +56,24 @@ input AccountRelationFilter {
 enum AccountScalarFieldEnum {
   acc_id
   acc_type
-  designation
   email
   password
 }
 
-input AccountUpdateOneWithoutReportsNestedInput {
-  connect: AccountWhereUniqueInput
-  connectOrCreate: AccountCreateOrConnectWithoutReportsInput
-  create: AccountCreateWithoutReportsInput
-  delete: Boolean
-  disconnect: Boolean
-  update: AccountUpdateWithoutReportsInput
-  upsert: AccountUpsertWithoutReportsInput
-}
-
-input AccountUpdateWithoutReportsInput {
+input AccountUpdateInput {
+input AccountUpdateInput {
   acc_id: StringFieldUpdateOperationsInput
   acc_type: EnumAccTypeFieldUpdateOperationsInput
-  designation: StringFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
-}
-
-input AccountUpsertWithoutReportsInput {
-  create: AccountCreateWithoutReportsInput!
-  update: AccountUpdateWithoutReportsInput!
+  reports: ReportUpdateManyWithoutReporterNestedInput
+  reports: ReportUpdateManyWithoutReporterNestedInput
 }
 
 input AccountWhereInput {
   acc_id: StringFilter
   acc_type: EnumAccTypeFilter
   AND: [AccountWhereInput!]
-  designation: StringFilter
   email: StringFilter
   NOT: [AccountWhereInput!]
   OR: [AccountWhereInput!]
@@ -110,10 +91,20 @@ enum AccType {
   NORMAL
 }
 
-type AggregateReport {
-  _count: ReportCountAggregate
-  _max: ReportMaxAggregate
-  _min: ReportMinAggregate
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
 }
 
 type CityProject {
@@ -228,32 +219,6 @@ input CityProjectWhereUniqueInput {
   reports_id: String
 }
 
-input Coordinates {
-  lat: Float!
-  lng: Float!
-}
-
-input CustomAccountUpdateInput {
-  acc_id: StringFieldUpdateOperationsInput
-  acc_type: EnumAccTypeFieldUpdateOperationsInput
-  designation: DesignationFieldUpdateOperationsInput
-  email: EmailFieldUpdateOperationsInput
-  password: PasswordFieldUpdateOperationsInput
-  reports: ReportUpdateManyWithoutReporterNestedInput
-}
-
-input CustomReportCreateInput {
-  city_porject: CityProjectCreateNestedOneWithoutReportInput
-  createdAt: DateTime
-  description: String!
-  incident: IncidentCreateNestedOneWithoutReportInput
-  location: Location!
-  report_id: String
-  report_type: ReportType!
-  reporter: AccountCreateNestedOneWithoutReportsInput
-  updatedAt: DateTime
-}
-
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -274,14 +239,6 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
-input DesignationFieldUpdateOperationsInput {
-  set: String
-}
-
-input EmailFieldUpdateOperationsInput {
-  set: String
-}
-
 input EnumAccTypeFieldUpdateOperationsInput {
   set: AccType
 }
@@ -291,17 +248,6 @@ input EnumAccTypeFilter {
   in: [AccType!]
   not: NestedEnumAccTypeFilter
   notIn: [AccType!]
-}
-
-input EnumReportTypeFieldUpdateOperationsInput {
-  set: ReportType
-}
-
-input EnumReportTypeFilter {
-  equals: ReportType
-  in: [ReportType!]
-  not: NestedEnumReportTypeFilter
-  notIn: [ReportType!]
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -346,12 +292,16 @@ input IncidentCreateWithoutReportInput {
   date_ended: DateTime!
   date_started: DateTime!
   incident_id: String
+  incident_type: String!
+  incident_type: String!
 }
 
 input IncidentOrderByWithRelationInput {
   date_ended: SortOrder
   date_started: SortOrder
   incident_id: SortOrder
+  incident_type: SortOrder
+  incident_type: SortOrder
   report: ReportOrderByWithRelationInput
   reports_id: SortOrder
 }
@@ -365,6 +315,8 @@ enum IncidentScalarFieldEnum {
   date_ended
   date_started
   incident_id
+  incident_type
+  incident_type
   reports_id
 }
 
@@ -382,6 +334,8 @@ input IncidentUpdateWithoutReportInput {
   date_ended: DateTimeFieldUpdateOperationsInput
   date_started: DateTimeFieldUpdateOperationsInput
   incident_id: StringFieldUpdateOperationsInput
+  incident_type: StringFieldUpdateOperationsInput
+  incident_type: StringFieldUpdateOperationsInput
 }
 
 input IncidentUpsertWithoutReportInput {
@@ -394,6 +348,8 @@ input IncidentWhereInput {
   date_ended: DateTimeFilter
   date_started: DateTimeFilter
   incident_id: StringFilter
+  incident_type: StringFilter
+  incident_type: StringFilter
   NOT: [IncidentWhereInput!]
   OR: [IncidentWhereInput!]
   report: ReportRelationFilter
@@ -405,32 +361,6 @@ input IncidentWhereUniqueInput {
   reports_id: String
 }
 
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
-
-input JsonFilter {
-  array_contains: JSON
-  array_ends_with: JSON
-  array_starts_with: JSON
-  equals: JSON
-  gt: JSON
-  gte: JSON
-  lt: JSON
-  lte: JSON
-  not: JSON
-  path: [String!]
-  string_contains: String
-  string_ends_with: String
-  string_starts_with: String
-}
-
-input Location {
-  destination: Coordinates!
-  origin: Coordinates!
-}
-
 type LoginResponseSuccess {
   accessToken: String!
   account: Account!
@@ -438,13 +368,23 @@ type LoginResponseSuccess {
 
 type Mutation {
   createOneAccount(data: AccountCreateInput!): Account!
-  createOneReport(data: CustomReportCreateInput!): Report!
-  deleteOneReport(where: ReportWhereUniqueInput!): Report
+  createOneReport(data: ReportCreateInput!): Report!
+  createOneReport(data: ReportCreateInput!): Report!
   login(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): LoginResponseSuccess
   logout: Boolean!
   registerOneAccount(data: AccountCreateInput!): Account!
-  updateOneAccount(data: CustomAccountUpdateInput!, where: AccountWhereUniqueInput!): Account
-  updateOneReport(data: ReportUpdateInput!, where: ReportWhereUniqueInput!): Report
+  updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+  updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
 }
 
 input NestedDateTimeFilter {
@@ -463,13 +403,6 @@ input NestedEnumAccTypeFilter {
   in: [AccType!]
   not: NestedEnumAccTypeFilter
   notIn: [AccType!]
-}
-
-input NestedEnumReportTypeFilter {
-  equals: ReportType
-  in: [ReportType!]
-  not: NestedEnumReportTypeFilter
-  notIn: [ReportType!]
 }
 
 input NestedFloatFilter {
@@ -511,17 +444,11 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
-input PasswordFieldUpdateOperationsInput {
-  set: String
-}
-
 type Query {
   aggregateReport(cursor: ReportWhereUniqueInput, orderBy: [ReportOrderByWithRelationInput!], skip: Int, take: Int, where: ReportWhereInput): AggregateReport!
   cityProject(where: CityProjectWhereUniqueInput!): CityProject
   cityProjects(cursor: CityProjectWhereUniqueInput, distinct: [CityProjectScalarFieldEnum!], orderBy: [CityProjectOrderByWithRelationInput!], skip: Int, take: Int, where: CityProjectWhereInput): [CityProject!]!
-  incident(where: IncidentWhereUniqueInput!): Incident
   incidents(cursor: IncidentWhereUniqueInput, distinct: [IncidentScalarFieldEnum!], orderBy: [IncidentOrderByWithRelationInput!], skip: Int, take: Int, where: IncidentWhereInput): [Incident!]!
-  report(where: ReportWhereUniqueInput!): Report
   reports(cursor: ReportWhereUniqueInput, distinct: [ReportScalarFieldEnum!], orderBy: [ReportOrderByWithRelationInput!], skip: Int, take: Int, where: ReportWhereInput): [Report!]!
 }
 
@@ -543,23 +470,36 @@ type Report {
   updatedAt: DateTime!
 }
 
-type ReportCountAggregate {
-  _all: Int!
-  createdAt: Int!
-  description: Int!
-  location: Int!
-  report_id: Int!
-  report_type: Int!
-  reporter_id: Int!
-  updatedAt: Int!
+input ReportCreateInput {
+  city_porject: CityProjectCreateNestedOneWithoutReportInput
+  createdAt: DateTime
+  description: String!
+  incident: IncidentCreateNestedOneWithoutReportInput
+  location: String!
+  published: Boolean!
+  report_id: String
+  reporter: AccountCreateNestedOneWithoutReportsInput
+  updatedAt: DateTime
+input ReportCreateInput {
+  city_porject: CityProjectCreateNestedOneWithoutReportInput
+  createdAt: DateTime
+  description: String!
+  incident: IncidentCreateNestedOneWithoutReportInput
+  location: String!
+  published: Boolean!
+  report_id: String
+  reporter: AccountCreateNestedOneWithoutReportsInput
+  updatedAt: DateTime
 }
 
 input ReportCreateManyReporterInput {
   createdAt: DateTime
   description: String!
-  location: JSON!
+  location: String!
+  published: Boolean!
+  location: String!
+  published: Boolean!
   report_id: String
-  report_type: ReportType!
   updatedAt: DateTime
 }
 
@@ -585,9 +525,11 @@ input ReportCreateWithoutReporterInput {
   createdAt: DateTime
   description: String!
   incident: IncidentCreateNestedOneWithoutReportInput
-  location: JSON!
+  location: String!
+  published: Boolean!
+  location: String!
+  published: Boolean!
   report_id: String
-  report_type: ReportType!
   updatedAt: DateTime
 }
 
@@ -595,24 +537,6 @@ input ReportListRelationFilter {
   every: ReportWhereInput
   none: ReportWhereInput
   some: ReportWhereInput
-}
-
-type ReportMaxAggregate {
-  createdAt: DateTime
-  description: String
-  report_id: String
-  report_type: ReportType
-  reporter_id: String
-  updatedAt: DateTime
-}
-
-type ReportMinAggregate {
-  createdAt: DateTime
-  description: String
-  report_id: String
-  report_type: ReportType
-  reporter_id: String
-  updatedAt: DateTime
 }
 
 input ReportOrderByRelationAggregateInput {
@@ -625,8 +549,9 @@ input ReportOrderByWithRelationInput {
   description: SortOrder
   incident: IncidentOrderByWithRelationInput
   location: SortOrder
+  published: SortOrder
+  published: SortOrder
   report_id: SortOrder
-  report_type: SortOrder
   reporter: AccountOrderByWithRelationInput
   reporter_id: SortOrder
   updatedAt: SortOrder
@@ -641,8 +566,9 @@ enum ReportScalarFieldEnum {
   createdAt
   description
   location
+  published
+  published
   report_id
-  report_type
   reporter_id
   updatedAt
 }
@@ -651,42 +577,25 @@ input ReportScalarWhereInput {
   AND: [ReportScalarWhereInput!]
   createdAt: DateTimeFilter
   description: StringFilter
-  location: JsonFilter
+  location: StringFilter
+  location: StringFilter
   NOT: [ReportScalarWhereInput!]
   OR: [ReportScalarWhereInput!]
+  published: BoolFilter
+  published: BoolFilter
   report_id: StringFilter
-  report_type: EnumReportTypeFilter
   reporter_id: StringNullableFilter
   updatedAt: DateTimeFilter
-}
-
-enum ReportType {
-  CityProject
-  RoadAccident
-  RoadClosure
-  RoadConstruction
-  RoadEvent
-  RoadHazard
-}
-
-input ReportUpdateInput {
-  city_porject: CityProjectUpdateOneWithoutReportNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  incident: IncidentUpdateOneWithoutReportNestedInput
-  location: Location
-  report_id: StringFieldUpdateOperationsInput
-  report_type: EnumReportTypeFieldUpdateOperationsInput
-  reporter: AccountUpdateOneWithoutReportsNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input ReportUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
-  location: JSON
+  location: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  location: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
   report_id: StringFieldUpdateOperationsInput
-  report_type: EnumReportTypeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -714,9 +623,11 @@ input ReportUpdateWithoutReporterInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   incident: IncidentUpdateOneWithoutReportNestedInput
-  location: JSON
+  location: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  location: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
   report_id: StringFieldUpdateOperationsInput
-  report_type: EnumReportTypeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -737,11 +648,13 @@ input ReportWhereInput {
   createdAt: DateTimeFilter
   description: StringFilter
   incident: IncidentRelationFilter
-  location: JsonFilter
+  location: StringFilter
+  location: StringFilter
   NOT: [ReportWhereInput!]
   OR: [ReportWhereInput!]
+  published: BoolFilter
+  published: BoolFilter
   report_id: StringFilter
-  report_type: EnumReportTypeFilter
   reporter: AccountRelationFilter
   reporter_id: StringNullableFilter
   updatedAt: DateTimeFilter
