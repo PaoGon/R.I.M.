@@ -13,13 +13,13 @@
 }
 
 .city{
-    font-size: 1.2vw;
+    font-size: 1.1vw;
     padding-bottom: 0.3em;
     color:#6F6F6F;
     font-weight: bold
 }
 .address{
-    font-size: 1.1vw;
+    font-size: 1vw;
     padding-bottom: 0.3em;
     color:#6F6F6F;
     font-weight: 300;
@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 5.5vw;
+    width: 5vw;
 }
 
 .iconImgCon{
@@ -60,17 +60,17 @@ display: flex;
         align-items: center;
         background: #FFFFFF;
         cursor: pointer;
-        padding: 3vw;
+        padding: 1vw;
         justify-content: start;
         height: 100%;
         
     }
     
     .city{
-        font-size: 3.2vw;
+        font-size: 2.5vw;
     }
     .address{
-        font-size: 3vw;
+        font-size: 2.5vw;
        
     }
 
@@ -88,7 +88,7 @@ display: flex;
         align-items: center;
         background: #FFFFFF;
         cursor: pointer;
-        padding: 3vw;
+        padding: 1vw;
         justify-content: start;
         height: 100%;
         
@@ -118,17 +118,17 @@ display: flex;
         align-items: center;
         background: #FFFFFF;
         cursor: pointer;
-        padding: 1em;
+        padding: 1vw;
         justify-content: start;
         height: 100%;
         
     }
     
     .city{
-        font-size: 2.3vw;
+        font-size: 1.75vw;
     }
     .address{
-        font-size: 2vw;
+        font-size: 1.5vw;
        
     }
 
@@ -140,10 +140,10 @@ display: flex;
         width: 8vw;
     }
     .city{
-        font-size: 2.3vw;
+        font-size: 1.75vw;
     }
     .address{
-        font-size: 2vw;
+        font-size: 1.5vw;
        
     }
 }

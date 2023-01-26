@@ -1,4 +1,4 @@
-import roadclosure from "@/Assets/svg/roadclosure.svg";
+import RoadClosure from "@/Assets/svg/RoadClosure.svg";
 import Construction from "@/Assets/svg/Constructions.svg";
 import Hazzard from "@/Assets/svg/Hazzard.svg";
 import Accident from "@/Assets/svg/Accident.svg";
@@ -41,7 +41,7 @@ export const LogsReportsBtnProps = [
   {
     id: "RoadClosure",
     type: "button",
-    svg: roadclosure,
+    svg: RoadClosure,
     icon: "",
     children: "Road Closure",
     buttonStyle: "btn--logs-design",
