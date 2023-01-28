@@ -1,5 +1,5 @@
 export interface cardItems {
-  reportType: string
+  id: string
   cardSize: string;
   cardTitle: string;
   cardIcon: string;

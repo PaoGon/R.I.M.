@@ -142,7 +142,6 @@ const Logs: FC = () => {
   // sets the reportTypeQuery when the component mounted
   useEffect(() => {
     setReportTypeQuery(state.type)
-    console.log("logs_page", state.type);
   }, []);
 
   const getSearch = (e: ChangeEvent<HTMLInputElement>) => {

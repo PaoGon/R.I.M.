@@ -55,7 +55,7 @@ const Page1: FC<IPage1> = ({ GetUpdatedData }) => {
             <Calendar
               date={new Date()}
               onChange={handleStartDate}
-              className="calendarUpdate"
+              className="calendarElement"
             />
           </div>
         ) : null}
@@ -84,7 +84,7 @@ const Page1: FC<IPage1> = ({ GetUpdatedData }) => {
             <Calendar
               date={new Date()}
               onChange={handleEndDate}
-              className="calendarUpdate"
+              className="calendarElement"
             />
           </div>
         ) : null}

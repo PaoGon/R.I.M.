@@ -1,57 +1,13 @@
 import { FC } from "react";
 
-import { useNavigate } from "react-router-dom";
-import { DeleteOneReportMutation, useDeleteOneReportMutation } from "@/generated/graphql";
-import graphqlRequestClient from "@/lib/client/graphqlRequestClient";
-
-
 import Button from "@/components/Button";
 import { btnType } from "@/components/Button/models";
 
 import { TbTrashX } from "react-icons/tb";
 
-import { IDelete } from './models'
-
 import "./style.css";
-import { useQueryClient } from "@tanstack/react-query";
-const Delete: FC<IDelete> = ({ PopOut, reportType, reportID }) => {
 
-  const navigate = useNavigate();
-
-  const change_page = () => {
-    navigate("/logs", {
-      state: {
-        type: reportType
-      }
-    })
-  }
-
-  const queryClient = useQueryClient();
-  const { mutate: deleteMutate } = useDeleteOneReportMutation<Error>(
-    graphqlRequestClient,
-    {
-      onSuccess: (data: DeleteOneReportMutation) => {
-        queryClient.invalidateQueries([
-          "PaginatedGetAllReportsByType",
-          { "reportType": reportType, "skip": 0, "take": 5 }
-        ]);
-        console.log(data);
-      },
-
-      onError: (error: Error) => {
-        console.log(error);
-      },
-    }
-  );
-
-  const onDelete = () => {
-    deleteMutate({
-      report_id: reportID
-    });
-
-    change_page();
-  }
-
+const Delete: FC = () => {
   return (
     <div className="delete-report">
       <div className="trash-can">
@@ -69,7 +25,9 @@ const Delete: FC<IDelete> = ({ PopOut, reportType, reportID }) => {
             type={btnType.Button}
             buttonStyle={"btn--grey"}
             buttonSize={"btn--cancel"}
-            onClick={PopOut}
+            onClick={() => {
+              console.log("Cancel!");
+            }}
           >
             Cancel
           </Button>
@@ -77,7 +35,9 @@ const Delete: FC<IDelete> = ({ PopOut, reportType, reportID }) => {
             type={btnType.Button}
             buttonStyle={"btn--red"}
             buttonSize={"btn--delete"}
-            onClick={onDelete}
+            onClick={() => {
+              console.log("Delete!");
+            }}
           >
             Delete
           </Button>

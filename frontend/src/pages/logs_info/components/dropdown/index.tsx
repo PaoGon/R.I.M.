@@ -1,9 +1,12 @@
 import { FC, useState, useContext, useEffect } from "react";
 
 import {
+  useDeleteOneReportMutation,
+  DeleteOneReportMutation,
   ReportType,
 } from "@/generated/graphql";
 
+import graphqlRequestClient from "@/lib/client/graphqlRequestClient";
 
 import PopUp from "./components/PopUp";
 
@@ -50,6 +53,18 @@ const DropDown: FC<IDropDown> = ({ report, setMenuTrig }) => {
   const [trigger, setTrigger] = useState<boolean>(false);
   const [deleteTrig, setDeleteTrig] = useState<boolean>(false);
 
+  const { mutate: deleteMutate } = useDeleteOneReportMutation<Error>(
+    graphqlRequestClient,
+    {
+      onSuccess: (data: DeleteOneReportMutation) => {
+        console.log(data);
+      },
+
+      onError: (error: Error) => {
+        console.log(error);
+      },
+    }
+  );
 
   const formTrig = () => {
     setTrigger(!trigger);
@@ -57,6 +72,13 @@ const DropDown: FC<IDropDown> = ({ report, setMenuTrig }) => {
     setMenuTrig();
   };
 
+  const submitDeleteForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    deleteMutate({
+      report_id: report?.report?.report_id,
+    });
+  };
 
   return (
     <>
@@ -80,23 +102,17 @@ const DropDown: FC<IDropDown> = ({ report, setMenuTrig }) => {
         </ul>
       </div>
       <>
-
-        <PopUp Trigger={trigger} PopOut={formTrig} >
-          <Update
-            reportID={report?.report?.report_id}
-            setTrigger={formTrig}
-            reportType={report?.report?.report_type}
-          />
+        <PopUp Trigger={trigger} PopOut={formTrig} DeleteTrig={deleteTrig}>
+          {!trigger ? (
+            <Delete />
+          ) : (
+            <Update
+              reportID={report?.report?.report_id}
+              setTrigger={formTrig}
+              reportType={report?.report?.report_type}
+            />
+          )}
         </PopUp>
-
-        <PopUp Trigger={deleteTrig} PopOut={formTrig}>
-          <Delete
-            reportID={report?.report?.report_id}
-            reportType={report?.report?.report_type}
-            PopOut={formTrig}
-          />
-        </PopUp>
-
       </>
     </>
   );

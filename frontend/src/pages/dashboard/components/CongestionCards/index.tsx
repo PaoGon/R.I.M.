@@ -5,20 +5,20 @@ import { cardItems } from "./models";
 
 import { useNavigate } from "react-router-dom";
 
-const CardCategories: FC<cardItems> = ({ reportType, cardSize, cardTitle, cardIcon, cardValue, imgColor }) => {
+const CardCategories: FC<cardItems> = ({ id, cardSize, cardTitle, cardIcon, cardValue, imgColor }) => {
   const navigate = useNavigate();
 
-  const change_page = (reportType: string) => {
+  const change_page = (id: string) => {
     navigate("/logs", {
       state: {
-        type: reportType
+        type: id
       }
     })
   }
 
   return (
     <Card cardSize={cardSize}>
-      <div className="cardFlexx" onClick={() => change_page(reportType)} >
+      <div className="cardFlexx" onClick={() => change_page(id)} >
         <div className="cardData">
           <p className="cardTitle">{cardTitle}</p>
           <p className="cValue">{cardValue}</p>

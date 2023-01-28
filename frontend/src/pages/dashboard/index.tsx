@@ -52,7 +52,7 @@ const Dashboard: FC = () => {
               return (
                 <div className="cards-wrapper" key={key}>
                   <CardCategories
-                    reportType={val.id}
+                    id={val.id}
                     cardSize={val.cardSize}
                     cardTitle={val.cardTitle}
                     cardIcon={val.cardIcon}
