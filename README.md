@@ -1,5 +1,33 @@
 # WEB-BASED ROAD INCIDENT DATA MANAGEMENT AND G.I.S. 
 
+## Description
+
+The system seeks to encourage the participation of local government unit departments and barangays in 
+reporting and managing these road incidents, and make the information easily shareable with 
+the general public of Quezon City. The system allows authorities to easily manage and 
+share road incident data, locate road incidents by interacting with the map, searching for a 
+location, or filtering by report type or date, and provides a dashboard with a total count of 
+all reported road incidents and data analytics graphs of traffic congestion for yearly, 
+monthly, and hourly periods using dummy dataset.
+
+## Motivation
+
+Lack of data from local government units and barangays leads to inaccurate 
+information in third-party navigation apps such as Waze and Google Maps. Collecting data 
+from these sources can be difficult, as they may not have a system for managing and 
+collecting data, resulting in limited information about road closures, hazards, and accidents. 
+
+As researchers, they recognize the importance of the participation of Local 
+Government Units as the primary authoritative source of local data on road conditions. 
+Consequently, they have developed a web-based Road Incident Data Management and 
+Geographical Information System for Quezon City Government Departments. This system 
+aims to create a Local Government repository of road incidents, which can provide 
+information for the general public and provide data analytics of the congestion level.
+
+## How to Use
+To see how the project operates, kindly check the [Demonstration Video](https://drive.google.com/file/d/1WMaJDssHIyz2tlE4e6sdnzYkTFRrG742/view?usp=sharing) or the [User's Manual](https://drive.google.com/file/d/1Jh3ma6VloZ2E11XieW00BDYdIOR1G88n/view?usp=sharing)
+
+
 ## Project prerequisites
 
 General requirements
